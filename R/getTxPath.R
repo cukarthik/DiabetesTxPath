@@ -47,7 +47,7 @@ getTxPath <- function(connectionDetails = connectionDetails,
   for(i in 1:length(sqlFiles)){
     txPathName <- sqlFiles[i]
     txPathName <- gsub(".sql","",txPathName)
-    sql <- "IF OBJECT_ID('@results_database_schema.@targetCohortTable', 'U') IS NOT NULL\n  DROP TABLE @results_database_schema.@target_cohort_table;\n    CREATE TABLE @results_database_schema.@target_cohort_table (cohort_definition_id INT, subject_id BIGINT, cohort_start_date DATE, cohort_end_date DATE);"
+    sql <- "IF OBJECT_ID('@results_database_schema.@target_cohort_table', 'U') IS NOT NULL\n  DROP TABLE @results_database_schema.@target_cohort_table;\n    CREATE TABLE @results_database_schema.@target_cohort_table (cohort_definition_id INT, subject_id BIGINT, cohort_start_date DATE, cohort_end_date DATE);"
     sql <- SqlRender::renderSql(sql,
                               results_database_schema = resultsDatabaseSchema,
                               target_cohort_table = targetCohortTable)$sql
